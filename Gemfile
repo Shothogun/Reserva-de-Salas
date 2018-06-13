@@ -46,6 +46,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.7'
   gem 'guard'
   gem 'guard-livereload', '~> 2.5', require: false
+  gem 'guard-rspec'
 end
 
 group :development do
