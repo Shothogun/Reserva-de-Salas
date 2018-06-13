@@ -46,3 +46,18 @@ Funcionalidade: Editar sala no sistema
       | room_location | LocalizacaoTeste |
     E clicar no botão "Update"
     Então eu devo ver uma mensagem de erro "A sala não pôde ser editada! Tente novamente!"
+    Quando eu preencher o formulário com:
+      | room_name | SalaTeste |
+      | room_location | XX |
+    E clicar no botão "Update"
+    Então eu devo ver uma mensagem de erro "A sala não pôde ser editada! Tente novamente!"
+    Quando eu preencher o formulário com:
+      | room_name | SalaTeste |
+      | room_location | XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX |
+    E clicar no botão "Update"
+    Então eu devo ver uma mensagem de erro "A sala não pôde ser editada! Tente novamente!"
+    Quando eu preencher o formulário com:
+      | room_name | XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX |
+      | room_location | LocalizaçaoOK |
+    E clicar no botão "Update"
+    Então eu devo ver uma mensagem de erro "A sala não pôde ser editada! Tente novamente!"
