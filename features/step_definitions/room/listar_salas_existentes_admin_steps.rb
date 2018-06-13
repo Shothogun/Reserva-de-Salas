@@ -35,3 +35,20 @@ end
 Então("eu devo estar em uma página com uma lista contendo a sala {string} localizada no {string}") do |string, string2|
   expect(page).to have_content(string)
 end
+
+Dado("que eu esteja logado como usuario comum com o email {string} e a senha {string}") do |string, string2|
+  User.create(username: 'admin', email: string, password: string2, 
+    registration: "15015296", course: "CIC", is_admin: false
+  )
+  visit new_user_session_path
+  fill_in :user_email, with: string
+  fill_in :user_password, with: string2
+  click_button "Log in"
+end
+
+E("eu estarei na pagina {string}") do |string|
+  expect(current_path).to eq("#{string}")
+end
+
+
+

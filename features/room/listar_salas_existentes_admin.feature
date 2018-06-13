@@ -17,3 +17,16 @@ Funcionalidade: Listar todas as salas do sistema
     Então eu devo estar em uma página com uma tabela com os dados:
       |name  | Pat-45 |
       |location| PAT-AT |
+
+
+  Cenário: Lista de salas aparece incorretamente (Usuário não possui privilégios admin)
+
+    Dado que eu esteja logado como usuario comum com o email "admin@admin.com" e a senha "admin123"
+    E eu estarei na pagina "/"
+    E existam as seguintes salas cadastradas no sistema:
+      |name  | Pat-45 |
+      |location| PAT-AT |
+    Quando eu clicar no botão "Ver lista de salas existentes"
+    Então eu devo estar em uma página com uma tabela com os dados:
+      |name  | Pat-45 |
+      |location| PAT-AT |
