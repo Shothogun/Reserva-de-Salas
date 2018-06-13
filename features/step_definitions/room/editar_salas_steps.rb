@@ -1,5 +1,7 @@
 # This is the steps file referred to editar_salas feature
 # Place your code relative to that feature here
+
+# Primeiro Cenário  - caso feliz 
 Dado("que eu esteja na página principal e já seja um administrador cadastrado e já exista uma sala cadastrada") do
     User.create!(username: 'admin', email: 'admin@admin.admin', password: 'adminseed', 
         registration: "admin000", course: "ADMIN", is_admin: true)
@@ -19,8 +21,14 @@ Então("eu devo estar na página de visualização de sala") do
     room = Room.where(name: "SalaTeste").first.id
     expect(current_path).to eq("/rooms/" + room.to_s)
 end
-
+# Primeiro Cenário  - caso feliz 
 Então("minha sala deve estar com os campos atualizados como {string}") do |string|
     edited_room = Room.where(name: "SalaTeste").first.name
     expect(edited_room).to eq(string)
 end
+
+# Segundo Cenário  - caso triste
+Então("eu devo ver uma mensagem de erro {string}") do |string|
+    expect(page).to have_content(string)
+end
+  
