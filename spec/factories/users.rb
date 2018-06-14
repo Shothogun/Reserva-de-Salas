@@ -3,7 +3,7 @@ FactoryBot.define do
         email 'rodrigo@rodrigo'
         username 'rodrigo'
         registration '150147384'
-        cource 'EC'
+        course 'EC'
         is_admin true
         password '123456'
     end
