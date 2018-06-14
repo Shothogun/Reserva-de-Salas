@@ -61,8 +61,11 @@ group :test do
   gem 'capybara', '~> 2.18'
   gem 'cucumber-rails', require: false
   # database_cleaner is not required, but highly recommended
+  gem 'factory_bot_rails'
   gem 'database_cleaner'
+  gem 'rails-controller-testing'
   gem 'guard-rspec'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

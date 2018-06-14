@@ -6,6 +6,7 @@ Funcionalidade: Editar sala no sistema
   Eu editar uma sala
   Para que eu manter dados atualizados sobre a sala
 
+  # Cenario Feliz
   Cenario: Um administrador edita uma sala com sucesso
     Dado que eu esteja na página principal e já seja um administrador cadastrado e já exista uma sala cadastrada
     Quando eu clicar em "Login"
@@ -27,6 +28,7 @@ Funcionalidade: Editar sala no sistema
     Então eu devo estar na página de visualização de sala
     E minha sala deve estar com os campos atualizados como "SalaTeste"
 
+  # Cenario Triste
   Cenario: Um administrador falha ao editar uma sala
     Dado que eu esteja na página principal e já seja um administrador cadastrado e já exista uma sala cadastrada
     Quando eu clicar em "Login"
