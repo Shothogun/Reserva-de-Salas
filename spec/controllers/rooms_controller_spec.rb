@@ -1,18 +1,34 @@
 require 'rails_helper'
 
 RSpec.describe RoomsController, type: :controller do
-    describe 'Criando uma sala' do
-        it 'Deveria chamar um método do controller que aloca um objeto de sala' do
-            @test_room = Room.new
-            assert @test_room
+    describe 'GET #new' do
+        before do 
+            @user = FactoryBot.create(:user)
+            sign_in @user
         end
+        it 'assignes a new room to @room' do
+            get :new
+            expect(assigns(:room)).to be_a_new(Room)
+        end
+    end
 
-        it 'Deveria selecionar o template new para renderização' do
-        
-        end
+    describe 'POST #create' do
+        let(:room_params) {FactoryBot.attributes_for(:room)}
+        context 'when params are valid'
+            before do 
+                @user = FactoryBot.create(:user)
+                sign_in @user
+                post :create, params: {room: room_params}
+            end
 
-        it 'Deveria chamar um método do controller que cria um objeto da sala' do
+            it 'renders backoffice template' do
+                expect(response).to redirect_to(backoffice_path)
+            end
+
+            it 'should persist through the database' do
+                expect(Room.find_by(name: room_params[:name])).to be_truthy
+            end
         
-        end
+
     end
 end
