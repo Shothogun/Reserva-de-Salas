@@ -63,6 +63,8 @@ group :test do
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
   gem 'guard-rspec'
+  gem "factory_bot_rails", "~> 4.0"
+  gem 'shoulda', '~> 3.5'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
