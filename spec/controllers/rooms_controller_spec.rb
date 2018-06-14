@@ -17,15 +17,20 @@ RSpec.describe RoomsController, type: :controller do
         end
     end
     describe "POST #update" do
-        let(:attr) do { :name => 'new name', :location => 'new location' } end
+        let(:attr1) do { :name => 'new name', :location => 'new location' } end
+        let(:attr2) do { :name => 'xx', :location => 'new location' } end
         before do
             @user = FactoryBot.create(:user)
             sign_in @user
             @room = FactoryBot.create(:room)
         end
         it 'deve editar a sala' do
-            patch :update, params: {id: @room.id, room: attr}
+            patch :update, params: {id: @room.id, room: attr1}
             expect(response.status).to eq(302) 
+        end
+        it 'nao deve editar a sala' do
+            patch :update, params: {id: @room.id, room: attr2}
+            expect(response.status).to eq(200) 
         end
     end
 end
