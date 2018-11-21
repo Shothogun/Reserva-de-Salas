@@ -43,9 +43,12 @@
           <% found = false %>
           <% @appointments.each do |appointment| %>
             <% app = appointment.start_time.hour.minutes.to_i  %>
+            <%= puts(appointment.appointment_date) %>
             <% if appointment.appointment_date == date and app >= Time.parse("0#{start_t.to_s}:00").hour.minutes.to_i and app < Time.parse("0#{end_t.to_s}:00").hour.minutes.to_i %>
-              <td class="text-center align-middle">
-                  <span> 
+              <% if (found == false) %>
+
+                <td class="text-center align-middle">
+                  <span>
                     <% if appointment.status == 1 %>
                       Situação: <span style="color: CadetBlue" >Solicitado</span>
                     <% elsif appointment.status == 2 %>
@@ -54,8 +57,10 @@
                       Situação: <span style="color: red" >Reprovado</span>
                     <% end %>
                   </span>
-              </td>
-              <% found = true %>
+                </td>
+                <% found = true %>
+
+              <% end %>
             <% end %>
           <% end %>
           <% if found == false %>
