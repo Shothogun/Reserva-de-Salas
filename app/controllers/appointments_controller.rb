@@ -6,6 +6,8 @@ class AppointmentsController < ApplicationController
 
   def create
     room_id = params[:format]
+
+    @appointback = Appointback.new
     @appointment = Appointment.new
     @appointment.room_id = params[:format]
     @appointment.user_id = current_user.id
@@ -14,12 +16,15 @@ class AppointmentsController < ApplicationController
     @appointment.status = 1
     @reservado = 0
 
+    @appointback.status = 1
+
     Appointment.all.each do |existingappointment|
     	if(@appointment.room_id == existingappointment.room_id) and (@appointment.appointment_date == existingappointment.appointment_date) and (@appointment.start_time == existingappointment.start_time)
       	@reservado = 1
     	end
     end
-      if (@reservado == 1)
+      if (@reservado == 1) and (@appointment.status = 4) and @appointment.save
+
       	redirect_to backoffice_path
       	flash[:danger] = "Sala já reservada!"
       else
@@ -62,6 +67,7 @@ class AppointmentsController < ApplicationController
 
   def all_appointments
     @appointments = Appointment.all
+    @appointbacks = Appointback.all
 
   end
 

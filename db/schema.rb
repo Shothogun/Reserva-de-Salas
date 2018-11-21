@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181104170539) do
+ActiveRecord::Schema.define(version: 20181120174727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointbacks", force: :cascade do |t|
+    t.datetime "appointback_date"
+    t.time "start_time"
+    t.integer "status"
+    t.bigint "user_id"
+    t.bigint "room_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_appointbacks_on_room_id"
+    t.index ["user_id"], name: "index_appointbacks_on_user_id"
+  end
 
   create_table "appointments", force: :cascade do |t|
     t.datetime "appointment_date"
@@ -32,7 +44,6 @@ ActiveRecord::Schema.define(version: 20181104170539) do
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "Tipo_sala"
     t.string "tipo_sala"
   end
 

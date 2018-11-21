@@ -23,4 +23,29 @@
   <% end %>
   </tbody>
 </table>
+
+<table class="table" id="table">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Username</th>
+    <th scope="col">Sala</th>
+    <th scope="col">Appointment Date</th>
+    <th scope="col">Start Time</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @appointbacks.each do |appointback| %>
+    <tr>
+      <th scope="row">1</th>
+      <td class="appointment-data"> <%= appointback.status %> </td>
+      <td class="appointment-data"> <%= appointback.room.name %> </td>
+      <td class="appointment-data"> <%= appointback.appointment_date %> </td>
+      <td class="appointment-data"> <%= appointback.start_time %> </td>
+      <td> <%= link_to 'Editar', edit_appointment_path(appointback.id) %> </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
 <%= link_to "Voltar ao perfil", root_path, class:'btn btn-secondary' %>
