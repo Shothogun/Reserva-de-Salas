@@ -13,12 +13,23 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <div class="container">                                         
+    <%= form_tag do %>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Tamanho da sala:</label>
+        <%= number_field_tag(:tamanho, in: 1..500, step: 1) %>
+      </div>
+      <div class="form-group col-md-6">
+      <br><%= submit_tag "Filtrar"%>
+    </div>
+    </div>
+    <% end %>
+    <div class="container">                                      
       <div class="dropdown">
         <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
           Tipos de Sala
         </button>
-        <div class="dropdown-menu"
+        <div class="dropdown-menu">
           <a class="dropdown-item" href="/rooms">Todas as Salas</a>
           <a class="dropdown-item" href="/filtro/Auditórios">Auditórios</a>
           <a class="dropdown-item" href="/filtro/Laboratórios">Laboratórios</a>
@@ -28,6 +39,7 @@
         </div>
       </div>
     </div>
+    <br>
   </body>
 </div>
 
