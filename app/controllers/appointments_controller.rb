@@ -11,6 +11,7 @@ class AppointmentsController < ApplicationController
     @appointment.user_id = current_user.id
     @appointment.appointment_date = params[:appointment_date]
     @appointment.start_time = params[:start_time]
+    @appointment.motive = params[:motive]
     @appointment.status = 1
     @reservado = 0
 

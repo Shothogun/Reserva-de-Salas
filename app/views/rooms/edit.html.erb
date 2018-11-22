@@ -12,6 +12,11 @@
   </div>
 
   <div class="field">
+    <%= r.label :tamanho %><br>
+    <%= number_field :tamanho, in: 1..500, step: 1 %>
+  </div>
+
+  <div class="field">
     <%= r.label :location %><br>
     <%= r.text_area :location, autocomplete: "off" %>
   </div>
