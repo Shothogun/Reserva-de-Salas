@@ -1,3 +1,33 @@
+<<<<<<< HEAD
+
+<table class="table" id="table">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Username</th>
+    <th scope="col">Sala</th>
+    <th scope="col">Appointment Date</th>
+    <th scope="col">Start Time</th>
+    <th scope="col">Motivo da reserva</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @appointments.each do |appointment| %>
+    <tr>
+      <th scope="row">1</th>
+      <td class="appointment-data"> <%= appointment.user.username %> </td>
+      <td class="appointment-data"> <%= appointment.room.name %> </td>
+      <td class="appointment-data"> <%= appointment.appointment_date %> </td>
+      <td class="appointment-data"> <%= appointment.start_time %> </td>
+      <td class="appointment-data"> <%= appointment.motive %> </td>
+      <td> <%= link_to 'Editar', edit_appointment_path(appointment.id) %> </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to "Voltar ao perfil", root_path, class:'btn btn-secondary' %>
+=======
 
 <table class="table" id="table">
   <thead>
@@ -24,3 +54,4 @@
   </tbody>
 </table>
 <%= link_to "Voltar ao perfil", root_path, class:'btn btn-secondary' %>
+>>>>>>> 7e40578a534bd1897c67195fe41e737d3bd7dfda
