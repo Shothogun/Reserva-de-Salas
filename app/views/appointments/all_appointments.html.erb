@@ -1,26 +1,62 @@
+<% @appointments.each do |appointment| %>
+  <% if () %>
 
-<table class="table" id="table">
-  <thead>
-  <tr>
-    <th scope="col">#</th>
-    <th scope="col">Username</th>
-    <th scope="col">Sala</th>
-    <th scope="col">Appointment Date</th>
-    <th scope="col">Start Time</th>
-    <th scope="col"></th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @appointments.each do |appointment| %>
-    <tr>
-      <th scope="row">1</th>
-      <td class="appointment-data"> <%= appointment.user.username %> </td>
-      <td class="appointment-data"> <%= appointment.room.name %> </td>
-      <td class="appointment-data"> <%= appointment.appointment_date %> </td>
-      <td class="appointment-data"> <%= appointment.start_time %> </td>
-      <td> <%= link_to 'Editar', edit_appointment_path(appointment.id) %> </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+
+
+<% end %>
+
 <%= link_to "Voltar ao perfil", root_path, class:'btn btn-secondary' %>
+
+
+
+<script type="text/javascript">
+    function mostra_esconde(){
+        if($('#collapseExample').is(":visible")){
+            $('#collapseExample').hide('slow');
+            //ou se quiser ficar mais lento ainda
+            //$('#linha').hide(4000); //para 4 segundos por exemplo
+        }else{
+            $('#collapseExample').show('slow');
+            //ou se quiser ficar mais lento ainda
+            //$('#linha').show(4000); //para 4 segundos por exemplo
+        }
+    }
+</script>
+
+<p>
+  <a class="btn btn-primary" href="javascript:mostra_esconde()" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Link with href
+  </a>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+
+
+    <table class="table" id="table">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Username</th>
+        <th scope="col">Sala</th>
+        <th scope="col">Appointment Date</th>
+        <th scope="col">Start Time</th>
+        <th scope="col"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @appointments.each do |appointment| %>
+        <tr>
+          <th scope="row">1</th>
+          <td class="appointment-data"> <%= appointment.user.username %> </td>
+          <td class="appointment-data"> <%= appointment.room.name %> </td>
+          <td class="appointment-data"> <%= appointment.appointment_date %> </td>
+          <td class="appointment-data"> <%= appointment.start_time %> </td>
+          <td> <%= link_to 'Editar', edit_appointment_path(appointment.id) %> </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+
+  </div>
+</div>

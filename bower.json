@@ -1,0 +1,18 @@
+{
+  "name": "Reserva-de-Salas",
+  "description": "",
+  "main": "",
+  "authors": [
+    "ribas858 <ribas858@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/EngSwCIC/Reserva-de-Salas",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
