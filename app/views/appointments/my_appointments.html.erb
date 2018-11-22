@@ -5,6 +5,7 @@
     <th scope="col">#</th>
     <th scope="col">Appointment Date</th>
     <th scope="col">Start Time</th>
+    <th scope="col">Motivo Aluguel</th>
     <th scope="col"></th>
   </tr>
   </thead>
@@ -14,6 +15,7 @@
       <th scope="row">1</th>
       <td class="appointment-data"> <%= appointment.appointment_date %> </td>
       <td class="appointment-data"> <%= appointment.start_time %> </td>
+      <td class="appointment-data"> <%= appointment.motive %> </td>
       <td> <%= link_to "Cancelar Aluguel", appointment_path(appointment), method: :delete %> </td>
     </tr>
   <% end %>
