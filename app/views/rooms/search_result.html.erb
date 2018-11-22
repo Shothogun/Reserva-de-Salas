@@ -12,6 +12,7 @@
   <tr>
     <th scope="col">Name</th>
     <th scope="col">Location</th>
+    <td scope="col">Tamanho</td>
     <td scope="col">Actions</td>
   </tr>
   </thead>
@@ -21,6 +22,7 @@
       <tr>
         <td><%= room.name %></td>
         <td><%= room.location %></td>
+        <td><%= room.tamanho %></td>
         <td>
           <%= link_to 'Show', room_path(room.id) %>
           <%= link_to 'Aluguel', appointment_path(room.id) %>

@@ -6,7 +6,6 @@ class Room < ApplicationRecord
 	validates :tamanho, presence: true
 
 
-
 	def self.search_by(date, time)
 	  if date and time
 	    Room.all - Room.joins(:appointments).where('appointment_date = ? AND start_time = ? AND status = 2', date, time)
