@@ -1,3 +1,4 @@
+#Classe de gerenciamento de recadastramento de senha de usuários
 class PasswordResetsController < ApplicationController
   before_action :get_user,         only: [:edit, :update]
   before_action :valid_user,       only: [:edit, :update]
@@ -6,6 +7,7 @@ class PasswordResetsController < ApplicationController
   def new
   end
 
+  # Envia email, ou não, para recadastramento de senha
   def create
     @user = User.find_by(email: params[:password_reset][:email].downcase)
     if @user
@@ -22,6 +24,7 @@ class PasswordResetsController < ApplicationController
   def edit
   end
 
+  # Valida senha e confirmação de senha inseridas pelo usuário
   def update
     if params[:user][:password].empty?                  
       @user.errors.add(:password, "Insira uma senha.")
@@ -42,18 +45,19 @@ class PasswordResetsController < ApplicationController
       params.require(:user).permit(:password, :password_confirmation)
     end
 
+    # Retorna usuário
     def get_user
       @user = User.find_by(email: params[:email])
     end
 
-    # Confirms a valid user.
+    # Confirma um usuário válido
     def valid_user
        unless (@user)
         redirect_to root_url
       end
     end
 
-    # Checks expiration of reset token.
+    # Checa vencimento do token de recadastramento
     def check_expiration
       if @user.password_reset_expired?
         flash[:danger] = "Link expirado."

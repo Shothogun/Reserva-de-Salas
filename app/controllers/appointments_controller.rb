@@ -55,6 +55,7 @@ class AppointmentsController < ApplicationController
     $status_old = @appointment.status
   end
 
+  # Quando o status da reserva for atualizado, envia um email de notificação
   def update
     @appointment = Appointment.find(params[:id])
     if @appointment.update(appointment_params)
