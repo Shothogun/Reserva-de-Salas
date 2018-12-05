@@ -20,7 +20,7 @@ Funcionalidade: indicação_de_sala_já_reservada
 			|appointment_date| Amanha |
 			E selecionar o seguinte horário de "8:00 - 10:00" da manhã
 			E clicar no botão "Reservar"
-			Então deve aparecer uma mensagem na tela dizendo "Seu aluguel foi solicitado a um administrador pois a sala já está reservada"
+			Então deve aparecer uma mensagem na tela dizendo "Sua reserva foi solicitada a um administrador pois a sala já está reservada"
 			Exemplos:
 			|appointment_date| start_time | name   | location |
 			| Amanha         | 08:00:00   | Pat-45 | PAT-AT   |

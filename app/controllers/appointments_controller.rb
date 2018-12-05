@@ -13,7 +13,6 @@ class AppointmentsController < ApplicationController
     @appointment.user_id = current_user.id
     @appointment.appointment_date = params[:appointment_date]
     @appointment.start_time = params[:start_time]
-    #@appointment.status = 2
     @reservado = 0
 
     Appointment.all.each do |existingappointment|
@@ -25,7 +24,7 @@ class AppointmentsController < ApplicationController
         @appointment.status = 1
         if (params[:appointment_date].size > 0) and (params[:start_time].size > 0) and @appointment.save
           redirect_to backoffice_path
-          flash[:notice] = "Seu aluguel foi solicitado a um administrador pois a sala já está reservada"
+          flash[:notice] = "Sua reserva foi solicitada a um administrador pois a sala já está reservada"
       	#redirect_to backoffice_path
       	#flash[:danger] = "Sala já reservada!"
         else
@@ -36,7 +35,7 @@ class AppointmentsController < ApplicationController
         @appointment.status = 2
 		    if (params[:appointment_date].size > 0) and (params[:start_time].size > 0) and @appointment.save
 		      redirect_to backoffice_path
-		      flash[:notice] = "Alguel realizado com sucesso!"      
+		      flash[:notice] = "Reserva realizada com sucesso!"      
 		    else
 		      redirect_to backoffice_path
 		      flash[:danger] = "Algo deu errado!"
@@ -90,7 +89,7 @@ class AppointmentsController < ApplicationController
   def destroy
     @appointment = Appointment.find(params[:id])
     @appointment.destroy
-    flash[:danger] = "O Aluguel foi cancelado com suceso"
+    flash[:danger] = "A reserva foi cancelada com sucesso"
     redirect_to my_appointments_path
   end
 

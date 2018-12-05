@@ -11,9 +11,9 @@ Funcionalidade: cancelar_aluguel
     E eu esteja no página principal com caminho "/"
     E existam as salas cadastradas no sistema: "<name>", "<location>"
     E existam os seguintes alugueis cadastrados no meu nome: "<appointment_date>", "<start_time>"
-    E eu clicar no link "Meus aluguéis"
+    E eu clicar no link "Minhas Reservas"
     Quando eu clicar em "Cancelar reserva"
-    Então eu devo ver uma mensagem "O Aluguel foi cancelado com sucesso!"
+    Então eu devo ver uma mensagem "A reserva foi cancelada com sucesso"
     Exemplos:
     | appointment_date | start_time | name   | location |
     | 2018-06-22       | 08:00:00   | Pat-45 | PAT-AT   |

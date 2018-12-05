@@ -19,7 +19,7 @@ Funcionalidade: Automatizar reserva de sala para salas não reservadas (tirar in
 			|appointment_date| Amanha |
 			E selecionar o seguinte horário de "8:00 - 10:00" da manhã
 			E clicar no botão "Reservar"
-			Então deve aparecer uma mensagem na tela dizendo "Alguel realizado com sucesso"
+			Então deve aparecer uma mensagem na tela dizendo "Reserva realizada com sucesso"
 			Exemplos:
 			|name   | location |
 			|Pat-45 | PAT-AT   |
@@ -38,7 +38,7 @@ Funcionalidade: Automatizar reserva de sala para salas não reservadas (tirar in
 			|appointment_date| Amanha |
 			E selecionar o seguinte horário de "8:00 - 10:00" da manhã
 			E clicar no botão "Reservar"
-			Então deve aparecer uma mensagem na tela dizendo "Seu aluguel foi solicitado a um administrador pois a sala já está reservada"
+			Então deve aparecer uma mensagem na tela dizendo "Sua reserva foi solicitada a um administrador pois a sala já está reservada"
 			Exemplos:
 			|appointment_date| start_time | name   | location |
 			| Amanha         | 08:00:00   | Pat-45 | PAT-AT   |
