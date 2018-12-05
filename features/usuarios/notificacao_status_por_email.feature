@@ -14,11 +14,11 @@ Funcionalidade: Notificação por e-mail de mudança no status de reserva de sal
     Quando eu selecionar a opção "Salas Existentes"
     E eu selecionar o botão "Tipos de Sala" 
     E eu preencher com o valor "Todas as Salas"
-    E eu selecionar o link "Aluguel"
+    E eu selecionar o link "Reservar"
     E depois preencher o dia do aluguel com:
       |appointment_date| Amanha |
     E selecionar tal horário de "10:00 - 12:00" da manhã
-    E eu selecionar o botão "Alugar"
+    E eu selecionar o botão "Reservar"
     Então após o pedido ser analisado pelo administrador do sistema eu devo receber em meu email "Pedido de aluguel aprovado!"
 
   # Caso triste
@@ -29,9 +29,9 @@ Funcionalidade: Notificação por e-mail de mudança no status de reserva de sal
     Quando eu selecionar a opção "Salas Existentes"
     E eu selecionar o botão "Tipos de Sala" 
     E eu preencher com o valor "Todas as Salas"
-    E eu selecionar o link "Aluguel"
+    E eu selecionar o link "Reservar"
     E depois preencher o dia do aluguel com:
       |appointment_date| Amanha |
     E selecionar tal horário de "10:00 - 12:00" da manhã
-    E eu selecionar o botão "Alugar"
+    E eu selecionar o botão "Reservar"
     Então após o pedido ser analisado pelo administrador do sistema eu devo receber em meu email "Pedido de aluguel recusado!"

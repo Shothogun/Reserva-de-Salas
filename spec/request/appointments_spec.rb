@@ -39,7 +39,7 @@ RSpec.describe 'Appointment API', type: :request do
                     post "/appointments", params: @appointment_duplicated_credentials2
             		end
             		it 'should render a success flash message' do
-                		expect(flash[:notice]).to eq("Seu aluguel foi solicitado a um administrador pois a sala já está reservada")
+                		expect(flash[:notice]).to eq("Sua reserva foi solicitada a um administrador pois a sala já está reservada")
                 end
                 it 'should make the first appointment status approved' do
                     expect(Appointment.find_by(:appointment_date => @appointment_duplicated_credentials[:appointment_date], :room_id => @appointment_duplicated_credentials[:room_id], :user_id => @appointment_duplicated_credentials[:user_id], :status => '2')).to be_truthy

@@ -9,6 +9,6 @@ Funcionalidade: Propósito de uso da sala (aula, banca, palestra, outro(com camp
 Cenario: O motivo da reseva da sala é salva no sistema com sucesso
 	Dado que eu esteja logado como usuário comum com o email "usuario@comum.com" e a senha "usuario123"
 	E eu esteja na página “reservar_sala”
-	Existirá um campo de texto com o nome <motivo_reserva>
+	E Existirá um campo de texto com o nome <motivo_reserva>
 	Então eu digitarei no campo de motivo o motivo da reserva de sala
-	Depois continuarei o processo de reserva de sala
+	Então Depois continuarei o processo de reserva de sala

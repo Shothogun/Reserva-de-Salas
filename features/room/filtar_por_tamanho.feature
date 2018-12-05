@@ -12,4 +12,4 @@ Cenario: A lista de salas filtrada pelo tamanho da sala é exibida com sucesso
 	E eu clicar no filtro <tamanho>
 	E digitar no campo de número <numero_alunos> o número máximo de alunos em uma sala
 	E eu clicar no botão “filtrar”
-	Será exibida uma lista de salas que comportam o número de alunos digitados por mim
+	Então Será exibida uma lista de salas que comportam o número de alunos digitados por mim
