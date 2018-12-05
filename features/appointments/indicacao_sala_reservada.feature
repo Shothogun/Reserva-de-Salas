@@ -15,11 +15,11 @@ Funcionalidade: indicação_de_sala_já_reservada
 			Então eu devo estar em uma página com uma tabela com os dados:
 			|name  | Pat-45 |
 			|location| PAT-AT |
-			Quando eu clicar no link "Aluguel" próximo ao nome da sala
+			Quando eu clicar no link "Reservar" próximo ao nome da sala
 			E preencher o dia do alugel com:
 			|appointment_date| Amanha |
 			E selecionar o seguinte horário de "8:00 - 10:00" da manhã
-			E clicar no botão "Alugar"
+			E clicar no botão "Reservar"
 			Então deve aparecer uma mensagem na tela dizendo "Seu aluguel foi solicitado a um administrador pois a sala já está reservada"
 			Exemplos:
 			|appointment_date| start_time | name   | location |
