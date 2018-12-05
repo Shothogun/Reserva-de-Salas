@@ -1,18 +1,12 @@
 class UserMailer < ApplicationMailer
 
-  # Subject can be set in your I18n file at config/locales/en.yml
-  # with the following lookup:
-  #
-  #   en.user_mailer.password_reset.subject
-  #
-
-  # Send password reset emails
+  # Envia emails de recadastramento de senha
   def password_reset(user)
     @user = user
     mail to: user.email, subject: "Recuperação de senha"
   end
 
-  # Send status notification of appointments emails 
+  # Envia notificações de status de reserva por email
   def status_notification(appointment)
     @appointment = appointment
     @user = appointment.user

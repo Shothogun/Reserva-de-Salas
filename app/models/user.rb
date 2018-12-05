@@ -14,24 +14,24 @@ class User < ApplicationRecord
   	self.is_admin
   end
 
-  # Sets the password reset attributes.
+  # Define atributos para recadastramento de senha
   def create_reset_digest
     self.reset_token = User.new_token
     update_attribute(:reset_digest,  self.reset_token)
     update_attribute(:reset_sent_at, Time.zone.now)
   end
 
-  # Returns a random token.
+  # Retorna um token aleatório
   def User.new_token
     SecureRandom.urlsafe_base64
   end
 
-  # Sends password reset email.
+  # Envia email para recadastramento de senha
   def send_password_reset_email
     UserMailer.password_reset(self).deliver_now
   end
 
-  # Returns true if a password reset has expired.
+  # Retorna true se um recadastramento de senha estiver expirado
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
   end
