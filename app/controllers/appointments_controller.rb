@@ -79,9 +79,13 @@ class AppointmentsController < ApplicationController
 
   #Método que busca as salas com reservas entre o início da semana atual até o fim da semana.
   def weeks_appointments
+    if is_admin?
     @weeks_appointments =  Appointment.where('appointment_date BETWEEN ? AND ?',
                                              Date.today.beginning_of_week,
                                              Date.today.end_of_week).sort_by &:appointment_date
+    else
+      return redirect_to '/'
+    end
   end
 
   def destroy
@@ -90,6 +94,16 @@ class AppointmentsController < ApplicationController
     flash[:danger] = "A reserva foi cancelada com sucesso"
     redirect_to my_appointments_path
   end
+
+  def is_admin?
+    if current_user.is_admin
+      true
+    else
+      flash[:danger] = "Você não pode acessar essa página"
+      return redirect_to '/'
+    end
+  end
+
 
   private
 

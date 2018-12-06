@@ -13,9 +13,7 @@ Funcionalidade: Filtro de sala por salas ocupadas.
 		E existam as seguintes salas cadastradas no sistema:
 			|name  	 | Pjc-54 |
 			|location| PJC-BT |
-		E existam alugueis para a semana cadastrados no sistema na sala "Pjc-54", "PJC-BT"
+		E existam reservas para a semana cadastrados no sistema na sala "Pjc-54", "PJC-BT"
 		E eu clicar no link "Todas as Reservas"
-		E eu esteja no página principal com caminho "/all-appointments"
 		E eu clicar no link "Reservas da semana"
-		E eu esteja no página principal com caminho "/weeks-appointments"
 		Então eu devo estar em uma página contendo a lista com a reserva da sala na semana

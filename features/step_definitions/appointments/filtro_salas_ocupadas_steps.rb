@@ -1,4 +1,4 @@
-Dado("existam alugueis para a semana cadastrados no sistema na sala {string}, {string}")do |name, location|
+Dado("existam reservas para a semana cadastrados no sistema na sala {string}, {string}")do |name, location|
     @appointment = Appointment.new
     @appointment.appointment_date = Date.today
     @appointment.start_time = '08:00:00'

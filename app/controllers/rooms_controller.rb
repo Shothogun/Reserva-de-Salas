@@ -54,9 +54,12 @@ class RoomsController < ApplicationController
 
 	#Método de busca de salas disponíveis por dia e hora
 	def search_result
+		@date = params[:date_search]
+		@time = params[:time_search]
 
-		if params[:date_search] and params[:time_search]
-			@search_result = Room.search_by(params[:date_search], params[:time_search])
+
+		if @date.present? and @time.present?
+			@search_result = Room.search_by(@date, @time)
 		else
 			redirect_to search_rooms_path
 		end
