@@ -1,5 +1,5 @@
 Dado("que eu esteja na página principal e seja um usuário cadastrado") do
-    User.create(username: "andre", password: "password123", 
+    @user = User.create(username: "andre", password: "password123", 
       email: "andre@a.com", registration: "15015296", course: "CIC", is_admin: false)
     visit("/")
 end
@@ -13,9 +13,15 @@ E("ao inserir os campos Nova Senha {string} e Confirmação {string} e clicar no
     page.has_content?("Nova Senha")
     page.has_content?("Confirmação")
 
-    user = User.find_by(email: "andre@a.com")
-    user.update_attributes(:password => string1)
-    expect(user.password).to eq(string2)
+    @user.update_attributes(:password => string1)
+    expect(@user.password).to eq(string2)
+end
+
+E("ao inserir os campos Nova Senha {string} e Confirmação {string} e clicar no botão {string} recebo aviso de senha inválida") do |string1,string2,string3|
+    page.has_content?("Nova Senha")
+    page.has_content?("Confirmação")
+
+    expect(@user.password).to eq("password123")
 end   
 
 Então("eu devo estar agora em uma página com título {string}") do |string|

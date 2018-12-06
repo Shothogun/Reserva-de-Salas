@@ -2,8 +2,7 @@
 class PasswordResetsController < ApplicationController
   before_action :get_user,         only: [:edit, :update]
   before_action :valid_user,       only: [:edit, :update]
-  #before_action :check_expiration, only: [:edit, :update]   
-
+ 
   def new
   end
 
@@ -54,14 +53,6 @@ class PasswordResetsController < ApplicationController
     def valid_user
        unless (@user)
         redirect_to root_url
-      end
-    end
-
-    # Checa vencimento do token de recadastramento
-    def check_expiration
-      if @user.password_reset_expired?
-        flash[:danger] = "Link expirado."
-        redirect_to user_session_url
       end
     end
 end

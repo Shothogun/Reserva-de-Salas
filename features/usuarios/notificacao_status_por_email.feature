@@ -19,7 +19,7 @@ Funcionalidade: Notificação por e-mail de mudança no status de reserva de sal
       |appointment_date| Amanha |
     E selecionar tal horário de "10:00 - 12:00" da manhã
     E eu selecionar o botão "Reservar"
-    Então após o pedido ser analisado pelo administrador do sistema eu devo receber em meu email "Pedido de aluguel aprovado!"
+    Então após o pedido ser analisado pelo administrador do sistema eu devo receber em meu email "Pedido de reserva aprovado!"
 
   # Caso triste
   Cenário: Administrador reprovou pedido de sala
@@ -34,4 +34,4 @@ Funcionalidade: Notificação por e-mail de mudança no status de reserva de sal
       |appointment_date| Amanha |
     E selecionar tal horário de "10:00 - 12:00" da manhã
     E eu selecionar o botão "Reservar"
-    Então após o pedido ser analisado pelo administrador do sistema eu devo receber em meu email "Pedido de aluguel recusado!"
+    Então após o pedido ser analisado pelo administrador do sistema eu devo receber em meu email "Pedido de reserva recusado!"
