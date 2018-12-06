@@ -11,3 +11,8 @@ end
 Então("eu devo estar em uma página contendo a lista com a reserva da sala na semana") do
   expect(page).to have_css 'table'
 end
+
+
+Então("eu devo estar em uma página contendo uma lista vazia") do
+  expect(find('tbody')).to have_no_css('*')
+end
