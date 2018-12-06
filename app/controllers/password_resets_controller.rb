@@ -10,10 +10,7 @@ class PasswordResetsController < ApplicationController
   def create
     @user = User.find_by(email: params[:password_reset][:email].downcase)
     if @user
-      @user.create_reset_digest
-      @user.send_password_reset_email
-      flash[:info] = "Email enviado com instruções para troca de senha."
-      redirect_to user_session_url
+      send_email
     else
       flash.now[:danger] = "Email não encontrado."
       render 'new'
@@ -54,5 +51,12 @@ class PasswordResetsController < ApplicationController
        unless (@user)
         redirect_to root_url
       end
+    end
+
+    def send_email
+      @user.create_reset_digest
+      @user.send_password_reset_email
+      flash[:info] = "Email enviado com instruções para troca de senha."
+      redirect_to user_session_url
     end
 end
