@@ -65,10 +65,7 @@ class AppointmentsController < ApplicationController
       flash.now[:danger] = "O aluguél não pôde ser editado! Tente novamente!"
       render 'edit'
     end
-    if $status_old != @appointment.status
-      @appointment.send_status_notification_email
-      flash[:info] = "Email enviado ao usuário com status de sua reserva."
-    end
+    send_notification
   end
 
   def my_appointments
@@ -98,5 +95,13 @@ class AppointmentsController < ApplicationController
 
   def appointment_params
     params.require(:appointment).permit(:status)
+  end
+
+  # Send notification to the user 
+  def send_notification
+    if $status_old != @appointment.status
+      @appointment.send_status_notification_email
+      flash[:info] = "Email enviado ao usuário com status de sua reserva."
+    end
   end
 end
