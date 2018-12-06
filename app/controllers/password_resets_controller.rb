@@ -9,12 +9,7 @@ class PasswordResetsController < ApplicationController
   # Envia email, ou não, para recadastramento de senha
   def create
     @user = User.find_by(email: params[:password_reset][:email].downcase)
-    if @user
-      send_email
-    else
-      flash.now[:danger] = "Email não encontrado."
-      render 'new'
-    end
+    check_user
   end
 
   def edit
@@ -22,20 +17,19 @@ class PasswordResetsController < ApplicationController
 
   # Valida senha e confirmação de senha inseridas pelo usuário
   def update
-    if params[:user][:password].empty?                  
-      @user.errors.add(:password, "Insira uma senha.")
-      flash[:info] = "Insira uma senha."
-      render 'edit'
-    elsif @user.update_attributes(user_params)          
-      flash[:success] = "Senha alterada com sucesso."
-      redirect_to user_session_url
+    if password_empty
+      blank_password                  
+    elsif @user.update_attributes(user_params)
+      success_password          
     else
-      flash[:info] = "Senha e/ou confirmação de senha incorretas. Senha precisa ter 6 caracteres."
-      render 'edit'                                     
-    end
+      invalid_password
+    end    
   end
 
   private
+    def password_empty
+      params[:user][:password].empty?
+    end
 
     def user_params
       params.require(:user).permit(:password, :password_confirmation)
@@ -58,5 +52,34 @@ class PasswordResetsController < ApplicationController
       @user.send_password_reset_email
       flash[:info] = "Email enviado com instruções para troca de senha."
       redirect_to user_session_url
+    end
+
+    # Checa usuário e envia email, ou não
+    def check_user
+      if @user
+        send_email
+      else
+        flash.now[:danger] = "Email não encontrado."
+        render 'new'
+      end
+    end
+
+    # Tratamento para senha em branco
+    def blank_password
+      @user.errors.add(:password, "Insira uma senha.")
+      flash[:info] = "Insira uma senha."
+      render 'edit'
+    end
+
+    # Tratamento para senha correta
+    def success_password
+      flash[:success] = "Senha alterada com sucesso."
+      redirect_to user_session_url
+    end
+    
+    # Tratamento para senha inválida
+    def invalid_password
+      flash[:info] = "Senha e/ou confirmação de senha incorretas. Senha precisa ter 6 caracteres."
+      render 'edit'                                     
     end
 end
