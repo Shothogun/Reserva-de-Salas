@@ -43,10 +43,12 @@
 			| 10:00:00 	   ||
 			| Editar       ||
 
-		Quando eu clicar no botão "Auditório" AZUL será exibido apenas o aluguel em questão:
-			|         2    ||
-			| admin    	   ||
-			| Auditório    ||
-			| 03-12-2018   ||
-			| 08:00:00 	   ||
-			| Editar       ||
+		# TENTEI TESTAR O BOTAO PELO ID MAS O CUCUMBER NAO CONSENGUE PERCORRER A DIV INTERNA.
+		# parent = page.find('.conjunto0') -- A PARTIR DESSA DIV ELE NAO ENTRA PARA ENCONTRAR MEU BOTAO
+		# expect(parent).to have_css('button#corblue')
+		# EXEMPLOS DE METODOS TESTADOS
+		# within('div#divp')
+		# page.should have_css("li#elemento")
+		# expect(page).to have_css('button#corblue.btn.btn-lg.btn-info')
+		# expect(page).to have_button("button#corblue.btn.btn-lg.btn-info')
+		# expect(page).to have_css("btn btn-lg bot", :text => "Auditorio")

@@ -3,7 +3,15 @@ class AppointmentsController < ApplicationController
 
   def new
     @appointment = Appointment.new
+    self.room
+  end
+
+  def room
     @room = Room.find(params[:id])
+  end
+
+  def appointment
+    @appointment = Appointment.find(params[:id])
   end
 
   def create
@@ -45,19 +53,19 @@ class AppointmentsController < ApplicationController
   end
 
   def show
-    @room = Room.find(params[:id])
+    self.room
     @appointments = Appointment.where('appointment_date >= ? AND room_id = ?', Date.today.beginning_of_week, params[:id]).all
     @dates = (Date.today.beginning_of_week..Date.today.beginning_of_week+6).map{ |date| date.strftime("%a (%d/%b)") }
   end
 
   def edit
-    @appointment = Appointment.find(params[:id])
+    self.appointment
     $status_old = @appointment.status
   end
 
   # Quando o status da reserva for atualizado, envia um email de notificação
   def update
-    @appointment = Appointment.find(params[:id])
+    self.appointment
     if @appointment.update(appointment_params)
       redirect_to all_appointments_path
       flash.now[:notice] = "A reserva foi editada com sucesso!"
@@ -89,7 +97,7 @@ class AppointmentsController < ApplicationController
   end
 
   def destroy
-    @appointment = Appointment.find(params[:id])
+    self.appointment
     @appointment.destroy
     flash[:danger] = "A reserva foi cancelada com sucesso"
     redirect_to my_appointments_path
