@@ -73,6 +73,8 @@
     
     <li ><a href="#method-i-all_appointments">#all_appointments</a>
     
+    <li ><a href="#method-i-appointment">#appointment</a>
+    
     <li ><a href="#method-i-appointment_do">#appointment_do</a>
     
     <li ><a href="#method-i-create">#create</a>
@@ -88,6 +90,8 @@
     <li ><a href="#method-i-my_appointments">#my_appointments</a>
     
     <li ><a href="#method-i-new">#new</a>
+    
+    <li ><a href="#method-i-room">#room</a>
     
     <li ><a href="#method-i-set_appointment">#set_appointment</a>
     
@@ -151,9 +155,42 @@ sistema.</p>
 
           
           <div class="method-source-code" id="all_appointments-source">
-            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 76</span>
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 84</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">all_appointments</span>
   <span class="ruby-ivar">@appointments</span> = <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">all</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-appointment" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">appointment</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="appointment-source">
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 13</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">appointment</span>
+  <span class="ruby-ivar">@appointment</span> = <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
           </div>
           
@@ -185,7 +222,7 @@ salva a reserva no banco de dados</p>
 
           
           <div class="method-source-code" id="appointment_do-source">
-            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 24</span>
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">appointment_do</span>
       <span class="ruby-keyword">if</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:appointment_date</span>].<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>) <span class="ruby-keyword">and</span> (<span class="ruby-identifier">params</span>[<span class="ruby-value">:start_time</span>].<span class="ruby-identifier">size</span> <span class="ruby-operator">&gt;</span> <span class="ruby-value">0</span>) <span class="ruby-keyword">and</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">save</span>
               <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">backoffice_path</span>
@@ -223,7 +260,7 @@ salva a reserva no banco de dados</p>
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 9</span>
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 17</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">create</span>
   <span class="ruby-identifier">room_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:format</span>]
   <span class="ruby-keyword">self</span>.<span class="ruby-identifier">set_appointment</span>
@@ -266,9 +303,9 @@ salva a reserva no banco de dados</p>
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 91</span>
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 99</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">destroy</span>
-  <span class="ruby-ivar">@appointment</span> = <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">appointment</span>
   <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">flash</span>[<span class="ruby-value">:danger</span>] = <span class="ruby-string">&quot;A reserva foi cancelada com sucesso&quot;</span>
   <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">my_appointments_path</span>
@@ -302,9 +339,9 @@ salva a reserva no banco de dados</p>
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 53</span>
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 61</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">edit</span>
-  <span class="ruby-ivar">@appointment</span> = <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">appointment</span>
   <span class="ruby-identifier">$status_old</span> = <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">status</span>
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -336,7 +373,7 @@ salva a reserva no banco de dados</p>
 
           
           <div class="method-source-code" id="is_admin-3F-source">
-            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 98</span>
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 106</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">is_admin?</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">current_user</span>.<span class="ruby-identifier">is_admin</span>
     <span class="ruby-keyword">true</span>
@@ -375,7 +412,7 @@ determinado dia e horário</p>
 
           
           <div class="method-source-code" id="is_reserved-3F-source">
-            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 43</span>
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 51</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">is_reserved?</span>
       <span class="ruby-keyword">return</span> <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">all</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;room_id = ? AND appointment_date = ? AND start_time = ?&#39;</span>, <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">room_id</span>, <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">appointment_date</span>, <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">start_time</span>).<span class="ruby-identifier">count</span> <span class="ruby-operator">!=</span> <span class="ruby-value">0</span> 
 <span class="ruby-keyword">end</span></pre>
@@ -408,7 +445,7 @@ determinado dia e horário</p>
 
           
           <div class="method-source-code" id="my_appointments-source">
-            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 71</span>
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 79</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">my_appointments</span>
   <span class="ruby-ivar">@user</span> = <span class="ruby-identifier">current_user</span>
   <span class="ruby-ivar">@my_appointments</span> = <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">appointments</span>
@@ -445,6 +482,39 @@ determinado dia e horário</p>
             <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 4</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">new</span>
   <span class="ruby-ivar">@appointment</span> = <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">room</span>
+<span class="ruby-keyword">end</span></pre>
+          </div>
+          
+        </div>
+
+        
+
+        
+      </div>
+
+    
+      <div id="method-i-room" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">room</span><span
+            class="method-args">()</span>
+          
+          <span class="method-click-advice">click to toggle source</span>
+          
+        </div>
+        
+
+        <div class="method-description">
+          
+          
+          
+          
+
+          
+          <div class="method-source-code" id="room-source">
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 9</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">room</span>
   <span class="ruby-ivar">@room</span> = <span class="ruby-constant">Room</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
 <span class="ruby-keyword">end</span></pre>
           </div>
@@ -476,7 +546,7 @@ determinado dia e horário</p>
 
           
           <div class="method-source-code" id="set_appointment-source">
-            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 34</span>
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 42</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">set_appointment</span>
       <span class="ruby-ivar">@appointment</span> = <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">new</span>
       <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">room_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:format</span>]
@@ -513,9 +583,9 @@ determinado dia e horário</p>
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 47</span>
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 55</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">show</span>
-  <span class="ruby-ivar">@room</span> = <span class="ruby-constant">Room</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">room</span>
   <span class="ruby-ivar">@appointments</span> = <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;appointment_date &gt;= ? AND room_id = ?&#39;</span>, <span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>.<span class="ruby-identifier">beginning_of_week</span>, <span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>]).<span class="ruby-identifier">all</span>
   <span class="ruby-ivar">@dates</span> = (<span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>.<span class="ruby-identifier">beginning_of_week</span><span class="ruby-operator">..</span><span class="ruby-constant">Date</span>.<span class="ruby-identifier">today</span>.<span class="ruby-identifier">beginning_of_week</span><span class="ruby-value">+6</span>).<span class="ruby-identifier">map</span>{ <span class="ruby-operator">|</span><span class="ruby-identifier">date</span><span class="ruby-operator">|</span> <span class="ruby-identifier">date</span>.<span class="ruby-identifier">strftime</span>(<span class="ruby-string">&quot;%a (%d/%b)&quot;</span>) }
 <span class="ruby-keyword">end</span></pre>
@@ -548,9 +618,9 @@ determinado dia e horário</p>
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 59</span>
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 67</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">update</span>
-  <span class="ruby-ivar">@appointment</span> = <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:id</span>])
+  <span class="ruby-keyword">self</span>.<span class="ruby-identifier">appointment</span>
   <span class="ruby-keyword">if</span> <span class="ruby-ivar">@appointment</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">appointment_params</span>)
     <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">all_appointments_path</span>
     <span class="ruby-identifier">flash</span>.<span class="ruby-identifier">now</span>[<span class="ruby-value">:notice</span>] = <span class="ruby-string">&quot;A reserva foi editada com sucesso!&quot;</span>
@@ -590,7 +660,7 @@ fim da semana.</p>
 
           
           <div class="method-source-code" id="weeks_appointments-source">
-            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 81</span>
+            <pre><span class="ruby-comment"># File app/controllers/appointments_controller.rb, line 89</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">weeks_appointments</span>
   <span class="ruby-keyword">if</span> <span class="ruby-identifier">is_admin?</span>
   <span class="ruby-ivar">@weeks_appointments</span> =  <span class="ruby-constant">Appointment</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&#39;appointment_date BETWEEN ? AND ?&#39;</span>,
@@ -618,7 +688,7 @@ fim da semana.</p>
 
 <footer id="validator-badges" role="contentinfo">
   <p><a href="https://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.0.1.
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.0.4.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 
