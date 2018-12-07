@@ -16,15 +16,15 @@ class RoomsController < ApplicationController
 
   # metodo envia todas as salas do banco de dados para a filtragem de requisição
 	def filtro
-		@rooms = Room.all
+		@rooms = index
 	end
 
 	def edit
-		@room = Room.find(params[:id])
+		@room = show
 	end
 
 	def update
-		@room = Room.find(params[:id])
+		@room = show
 		if @room.update(room_params)
 			redirect_to @room
 			flash[:notice] = "A sala foi editada com sucesso!"
@@ -46,7 +46,7 @@ class RoomsController < ApplicationController
 	end
 
 	def destroy
-		@room = Room.find(params[:id])
+		@room = show
 		@room.destroy
 		flash[:danger] = "A sala foi excluída"
 		redirect_to backoffice_path
