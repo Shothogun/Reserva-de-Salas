@@ -8,40 +8,40 @@ class AppointmentsController < ApplicationController
 
   def create
     room_id = params[:format]
-    @appointment = Appointment.new
-    @appointment.room_id = params[:format]
+    self.set_appointment
+    if (self.is_reserved?)
+    	@appointment.status = 1
+      self.appointment_do
+      flash[:notice] = "Sua reserva foi solicitada a um administrador pois a sala já está reservada"
+    else
+    	@appointment.status = 2
+      self.appointment_do
+		  flash[:notice] = "Reserva realizada com sucesso!"
+		end
+  end
+
+  #Método que verifica se as entradas de um reserva são válidas e, caso sejam, salva a reserva no banco de dados
+  def appointment_do
+  	if (params[:appointment_date].size > 0) and (params[:start_time].size > 0) and @appointment.save
+  		redirect_to backoffice_path
+  	else
+  		redirect_to backoffice_path
+  		flash[:danger] = "Algo deu errado!"
+  	end
+  end
+
+  #Método que inicializa as variáveis de uma reserva que está sendo criada
+  def set_appointment
+  	@appointment = Appointment.new
+  	@appointment.room_id = params[:format]
     @appointment.user_id = current_user.id
     @appointment.appointment_date = params[:appointment_date]
     @appointment.start_time = params[:start_time]
-    @reservado = 0
+  end
 
-    Appointment.all.each do |existingappointment|
-    	if(@appointment.room_id == existingappointment.room_id) and (@appointment.appointment_date == existingappointment.appointment_date) and (@appointment.start_time == existingappointment.start_time)
-      	@reservado = 1
-    	end
-    end
-      if (@reservado == 1)
-        @appointment.status = 1
-        if (params[:appointment_date].size > 0) and (params[:start_time].size > 0) and @appointment.save
-          redirect_to backoffice_path
-          flash[:notice] = "Sua reserva foi solicitada a um administrador pois a sala já está reservada"
-      	#redirect_to backoffice_path
-      	#flash[:danger] = "Sala já reservada!"
-        else
-          redirect_to backoffice_path
-          flash[:danger] = "Algo deu errado!"
-        end
-      else
-        @appointment.status = 2
-		    if (params[:appointment_date].size > 0) and (params[:start_time].size > 0) and @appointment.save
-		      redirect_to backoffice_path
-		      flash[:notice] = "Reserva realizada com sucesso!"      
-		    else
-		      redirect_to backoffice_path
-		      flash[:danger] = "Algo deu errado!"
-		    end
-		      #redirect_to '/'
-		  end
+  #Método que retorna uma flag indicando se a sala já está reservada em um determinado dia e horário
+  def is_reserved?
+  	return Appointment.all.where('room_id = ? AND appointment_date = ? AND start_time = ?', @appointment.room_id, @appointment.appointment_date, @appointment.start_time).count != 0 
   end
 
   def show
@@ -60,9 +60,9 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.find(params[:id])
     if @appointment.update(appointment_params)
       redirect_to all_appointments_path
-      flash.now[:notice] = "O aluguél foi editado com sucesso!"
+      flash.now[:notice] = "A reserva foi editada com sucesso!"
     else
-      flash.now[:danger] = "O aluguél não pôde ser editado! Tente novamente!"
+      flash.now[:danger] = "A reserva não pôde ser editada! Tente novamente!"
       render 'edit'
     end
     send_notification
@@ -111,7 +111,7 @@ class AppointmentsController < ApplicationController
     params.require(:appointment).permit(:status)
   end
 
-  # Send notification to the user 
+  # Send notification to the user
   def send_notification
     if $status_old != @appointment.status
       @appointment.send_status_notification_email

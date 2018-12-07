@@ -8,6 +8,7 @@
 
 <script type="text/javascript">
   var rdoc_rel_prefix = "./";
+  var index_rel_prefix = "./";
 </script>
 
 <script src="./js/jquery.js"></script>
@@ -85,12 +86,8 @@
 
   <section class="description">
     
-<p>frozen_string_literal: true</p>
-
   </section>
 
-  
-  
   
   <section id="5Buntitled-5D" class="documentation-section">
     
@@ -127,12 +124,12 @@
 
           
           <div class="method-source-code" id="change-source">
-            <pre><span class="ruby-comment"># File db/migrate/20180521225625_devise_create_users.rb, line 4</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">change</span>
+            <pre><span class="ruby-comment"># File db/migrate/20180521225625_devise_create_users.rb, line 3</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier ruby-title">change</span>
   <span class="ruby-identifier">create_table</span> <span class="ruby-value">:users</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">t</span><span class="ruby-operator">|</span>
     <span class="ruby-comment">## Database authenticatable</span>
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">string</span> <span class="ruby-value">:email</span>,              <span class="ruby-identifier">null</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>, <span class="ruby-identifier">default</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;&quot;</span>
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">string</span> <span class="ruby-value">:encrypted_password</span>, <span class="ruby-identifier">null</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>, <span class="ruby-identifier">default</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">string</span> <span class="ruby-value">:email</span>,              <span class="ruby-value">null:</span> <span class="ruby-keyword">false</span>, <span class="ruby-value">default:</span> <span class="ruby-string">&quot;&quot;</span>
+    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">string</span> <span class="ruby-value">:encrypted_password</span>, <span class="ruby-value">null:</span> <span class="ruby-keyword">false</span>, <span class="ruby-value">default:</span> <span class="ruby-string">&quot;&quot;</span>
 
     <span class="ruby-comment">## Recoverable</span>
     <span class="ruby-identifier">t</span>.<span class="ruby-identifier">string</span>   <span class="ruby-value">:reset_password_token</span>
@@ -142,7 +139,7 @@
     <span class="ruby-identifier">t</span>.<span class="ruby-identifier">datetime</span> <span class="ruby-value">:remember_created_at</span>
 
     <span class="ruby-comment">## Trackable</span>
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">integer</span>  <span class="ruby-value">:sign_in_count</span>, <span class="ruby-identifier">default</span><span class="ruby-operator">:</span> <span class="ruby-value">0</span>, <span class="ruby-identifier">null</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">integer</span>  <span class="ruby-value">:sign_in_count</span>, <span class="ruby-value">default:</span> <span class="ruby-value">0</span>, <span class="ruby-value">null:</span> <span class="ruby-keyword">false</span>
     <span class="ruby-identifier">t</span>.<span class="ruby-identifier">datetime</span> <span class="ruby-value">:current_sign_in_at</span>
     <span class="ruby-identifier">t</span>.<span class="ruby-identifier">datetime</span> <span class="ruby-value">:last_sign_in_at</span>
     <span class="ruby-identifier">t</span>.<span class="ruby-identifier">inet</span>     <span class="ruby-value">:current_sign_in_ip</span>
@@ -160,11 +157,11 @@
     <span class="ruby-comment"># t.datetime :locked_at</span>
 
 
-    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">timestamps</span> <span class="ruby-identifier">null</span><span class="ruby-operator">:</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-identifier">t</span>.<span class="ruby-identifier">timestamps</span> <span class="ruby-value">null:</span> <span class="ruby-keyword">false</span>
   <span class="ruby-keyword">end</span>
 
-  <span class="ruby-identifier">add_index</span> <span class="ruby-value">:users</span>, <span class="ruby-value">:email</span>,                <span class="ruby-identifier">unique</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>
-  <span class="ruby-identifier">add_index</span> <span class="ruby-value">:users</span>, <span class="ruby-value">:reset_password_token</span>, <span class="ruby-identifier">unique</span><span class="ruby-operator">:</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">add_index</span> <span class="ruby-value">:users</span>, <span class="ruby-value">:email</span>,                <span class="ruby-value">unique:</span> <span class="ruby-keyword">true</span>
+  <span class="ruby-identifier">add_index</span> <span class="ruby-value">:users</span>, <span class="ruby-value">:reset_password_token</span>, <span class="ruby-value">unique:</span> <span class="ruby-keyword">true</span>
   <span class="ruby-comment"># add_index :users, :confirmation_token,   unique: true</span>
   <span class="ruby-comment"># add_index :users, :unlock_token,         unique: true</span>
 <span class="ruby-keyword">end</span></pre>
@@ -185,8 +182,8 @@
 
 
 <footer id="validator-badges" role="contentinfo">
-  <p><a href="http://validator.w3.org/check/referer">Validate</a>
-  <p>Generated by <a href="http://docs.seattlerb.org/rdoc/">RDoc</a> 4.2.1.
+  <p><a href="https://validator.w3.org/check/referer">Validate</a>
+  <p>Generated by <a href="https://ruby.github.io/rdoc/">RDoc</a> 6.0.1.
   <p>Based on <a href="http://deveiate.org/projects/Darkfish-RDoc/">Darkfish</a> by <a href="http://deveiate.org">Michael Granger</a>.
 </footer>
 
